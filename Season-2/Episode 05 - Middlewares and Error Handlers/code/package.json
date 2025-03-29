@@ -1,0 +1,22 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "\"Creating our express server using express.js\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Namaste-Node"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "sane-aalam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
