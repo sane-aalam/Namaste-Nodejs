@@ -1,0 +1,32 @@
+const express = require("express");
+const app = express();
+const port = 3000;
+
+// Explain the concept of middleware in Express.js
+// Middleware acts as a bridge between incoming HTTP requests and your Express.js application
+// allowing for a range of operations such as parsing request bodies, handling authentication, and even serving static files.
+// Middleware work for all routes which ralated to "/admin" route
+// sometime you can use pre-define middleware
+// Middleware (write);
+
+const { adminAuth, userAuth } = require("../Middleware/auth");
+
+app.use("/admin", adminAuth);
+app.use("/users", userAuth);
+
+app.get("/users", (req, res) => {
+  res.send("user show data!");
+});
+
+app.get("/admin/getAllData", (req, res) => {
+  res.send("user data Send!");
+});
+
+app.get("/admin/deleteAllData", (req, res) => {
+  res.send("All data send");
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
