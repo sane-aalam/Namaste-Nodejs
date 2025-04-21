@@ -9,10 +9,18 @@ const port = 3000;
 // sometime you can use pre-define middleware
 // Middleware (write);
 
-const { adminAuth, userAuth } = require("../Middleware/auth");
-
-app.use("/admin", adminAuth);
-app.use("/users", userAuth);
+app.use("/admin", (res, req, next) => {
+  console.log("Admin authorization is getting checked!");
+  let token = "xyz";
+  const isAuthorizationAdmin = token === "xyz";
+  if (!isAuthorizationAdmin) {
+    res.statusCode.send("Unauthorized request");
+  } else {
+    console.log("called");
+    next();
+  }
+  res.send("All data send");
+});
 
 app.get("/users", (req, res) => {
   res.send("user show data!");
@@ -22,7 +30,7 @@ app.get("/admin/getAllData", (req, res) => {
   res.send("user data Send!");
 });
 
-app.get("/admin/deleteAllData", (req, res) => {
+app.delete("/admin/deleteAllData", (req, res) => {
   res.send("All data send");
 });
 

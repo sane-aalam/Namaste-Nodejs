@@ -7,22 +7,41 @@ const port = 3000;
 // allowing for a range of operations such as parsing request bodies, handling authentication, and even serving static files.
 // Middleware work for all routes which ralated to "/admin" route
 // sometime you can use pre-define middleware
-// Middleware (write);
-
-const { adminAuth, userAuth } = require("../Middleware/auth");
-
-app.use("/admin", adminAuth);
-app.use("/users", userAuth);
+// Middleware (write) - Need to reduce the code,become clean code
 
 app.get("/users", (req, res) => {
+  let token = "xyz";
+  const isAuthorizationAdmin = token === "xyz";
+  if (!isAuthorizationAdmin) {
+    res.statusCode.send("Unauthorized request");
+  } else {
+    console.log("called");
+    next();
+  }
   res.send("user show data!");
 });
 
 app.get("/admin/getAllData", (req, res) => {
+  let token = "xyz";
+  const isAuthorizationAdmin = token === "xyz";
+  if (!isAuthorizationAdmin) {
+    res.statusCode.send("Unauthorized request");
+  } else {
+    console.log("called");
+    next();
+  }
   res.send("user data Send!");
 });
 
-app.get("/admin/deleteAllData", (req, res) => {
+app.delete("/admin/deleteAllData", (req, res) => {
+  let token = "xyz";
+  const isAuthorizationAdmin = token === "xyz";
+  if (!isAuthorizationAdmin) {
+    res.statusCode.send("Unauthorized request");
+  } else {
+    console.log("called");
+    next();
+  }
   res.send("All data send");
 });
 
